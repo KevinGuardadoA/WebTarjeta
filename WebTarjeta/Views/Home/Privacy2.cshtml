@@ -1,0 +1,28 @@
+﻿@using WebTarjeta.Extencion;
+@{
+    Tarjeta tarjeta = Context.Session.GetObject<Tarjeta>("Tarjeta");
+}
+@{
+    ViewData["Title"] = "Compra";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Agregra pago</p>
+<form asp-controller="Home" asp-action="GuardarPago">
+    <div class="mb-3">
+        <label for="Monto" class="form-label">Monto</label>
+        <input type="hidden" id="IdUsuario" name="IdUsuario" value="@tarjeta.IdUsuario" />
+        <input type="hidden" id="IdTarjeta" name="IdTarjeta" value="@tarjeta.Id" />
+        <input type="hidden" id="IdTipoTransaccion" name="IdTipoTransaccion" value="2" />
+        <input type="number" class="form-control" id="Monto" name="Monto" />
+    </div>
+    <div class="mb-3">
+        <label for="Descripcion" class="form-label">Descripcion</label>
+        <input type="text" class="form-control" id="Descripcion" name="Descripcion" />
+    </div>
+    <div class="mb-3">
+        <label for="Fecha" class="form-label">Fecha</label>
+        <input type="date" class="form-control" id="Fecha" name="Fecha" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Compra</button>
+</form>
